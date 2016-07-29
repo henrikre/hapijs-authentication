@@ -1,0 +1,22 @@
+{
+  "name": "hapijs-authentication",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node --presets stage-0,es2015 --plugins transform-class-properties server.js",
+    "prestart": "babel src --out-dir dist",
+    "start": "npm run build && node dist/server.js"
+  },
+  "author": "Henrik Reponen",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.12.0",
+    "boom": "^3.2.2",
+    "glob": "^7.0.5",
+    "hapi": "^13.5.2",
+    "hapi-auth-jwt": "^4.0.0",
+    "joi": "^9.0.4",
+    "mongoose": "^4.5.7"
+  }
+}
