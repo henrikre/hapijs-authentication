@@ -1,3 +1,4 @@
+import argon2 from 'argon2';
 import mongoose, { Schema } from 'mongoose';
 
 const UserSchema = Schema({
@@ -14,6 +15,16 @@ const UserSchema = Schema({
     type: Boolean,
     required: true
   }
+});
+
+UserSchema.pre('save', function(next) {
+  let user = this;
+  if (!user.isModified('password')) return next;
+
+  argon2.generateSalt().then(salt => {
+    user.password = argon2.hash(user.password, salt);
+    next();
+  });
 });
 
 export default mongoose.model('User', UserSchema);
