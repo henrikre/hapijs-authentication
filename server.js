@@ -36,7 +36,9 @@ server.start(err => {
     if (err) {
       throw err;
     }
-  })
+  });
 
   console.log('Hapi listening on port 9000');
-})
+});
+
+export default server;

@@ -31,13 +31,13 @@ function verifyCredentials(request, reply) {
   .then(user => {
     console.log(user);
     if (user) {
-      argon2.verify(user.password, request.payload.password).then(match => {
+      user.comparePassword(request.payload.password, (err, match) => {
         if (match) {
           reply(user);
         } else {
           reply(Boom.badRequest('Incorrect password'));
         }
-      })
+      });
     } else {
       reply(Boom.badRequest('Incorrect email'));
     }
